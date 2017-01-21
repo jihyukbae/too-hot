@@ -98,7 +98,7 @@ def process_temps():
 def get_all_readings_json_fmt():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("select * from temps order by readingID DESC")
+    cursor.execute("select * from temps order by readingID DESC LIMIT 100")
     rows = cursor.fetchall()
     data = {"temps": []}
     for row in rows:
