@@ -8,6 +8,7 @@ from flask_socketio import SocketIO
 import time
 from dateutil.parser import parse
 from datetime import datetime as dt
+from datetime import date, timedelta
 
 
 app.config['SECRET_KEY'] = 'secret!'
@@ -32,7 +33,9 @@ def admin_dashboard():
 
     # var nextWeek = Date.parse(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7));
 
-
+    previous_days_sick_totals = []
+    for i in range(0,19):
+        previous_days_sick_totals.append(0)
 
     for reading in json_data:
         timestamp = reading['timestamp']
@@ -43,8 +46,14 @@ def admin_dashboard():
             num_readings_today += 1
         if reading['temp'] > SICK_THRESHOLD:
             num_sick_total += 1
+
+        for i in range(0,19):
+            dayobj = dt.today() - timedelta(i+1)
+            if reading['temp'] > SICK_THRESHOLD and datetime_obj.date() == dayobj.date():
+                previous_days_sick_totals[i] += 1
+    previous_days_sick_totals.reverse()
     return render_template('admin.html', readings=json_data, num_readings_today=num_readings_today, num_sick_today=num_sick_today,
-                           num_readings_total=num_readings_total,num_sick_total=num_sick_total)
+                           num_readings_total=num_readings_total,num_sick_total=num_sick_total, previous_days_sick_totals=previous_days_sick_totals)
 
 @app.route('/static/admin')
 def admin_index():

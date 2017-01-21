@@ -38,6 +38,8 @@
         document.getElementById("numreadstoday").innerHTML = parseInt(document.getElementById("numreadstoday").innerHTML)+1;
         document.getElementById("numreadstotal").innerHTML = parseInt(document.getElementById("numreadstotal").innerHTML)+1;
     });
+
+
     </script>
 </head>
 <body>
@@ -118,7 +120,7 @@
     <div class="card card-banner card-chart card-green no-br">
       <div class="card-header">
         <div class="card-title">
-          <div class="title">Hourly Report</div>
+          <div class="title">Daily Fever Count</div>
         </div>
 
       </div>
@@ -130,7 +132,7 @@
 </div>
 <div class="row">
   <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-      <a class="card card-banner card-green-light">
+      <a class="card card-banner card-yellow-light">
   <div class="card-body">
     <!--<i class="icon fa fa-shopping-basket fa-4x"></i>-->
     <div class="content">
@@ -142,7 +144,7 @@
 
   </div>
   <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-      <a class="card card-banner card-blue-light">
+      <a class="card card-banner card-green-light">
   <div class="card-body">
     <!--<i class="icon fa fa-thumbs-o-up fa-4x"></i>-->
     <div class="content">
@@ -198,6 +200,52 @@
 </div>
   <script type="text/javascript" src="./static/assets/js/vendor.js"></script>
   <script type="text/javascript" src="./static/assets/js/app.js"></script>
-
+<script>
+if ($('.ct-chart-sale').length) {
+  new Chartist.Line('.ct-chart-sale', {
+    labels: ["10:20", "10:30", "10:40", "10:50", "11:00", "11:10", "11:20", "11:30", "11:40", "11:50", "12:00", "12:10", "12:20", "12:30", "12:40", "12:50", "13:00", "13:10", "13:20", "13:30"],
+    series: [[
+        {% for sick_count in previous_days_sick_totals %}
+            {{ sick_count }},
+        {% endfor %}
+    ]]
+  }, {
+    axisX: {
+      position: 'center'
+    },
+    axisY: {
+      offset: 0,
+      showLabel: false,
+      labelInterpolationFnc: function labelInterpolationFnc(value) {
+        return value;
+      }
+    },
+    chartPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    height: 250,
+    high: 50,
+    showArea: true,
+    stackBars: true,
+    fullWidth: true,
+    lineSmooth: false,
+    plugins: [Chartist.plugins.ctPointLabels({
+      textAnchor: 'left',
+      labelInterpolationFnc: function labelInterpolationFnc(value) {
+        return value;
+      }
+    })]
+  }, [['screen and (max-width: 768px)', {
+    axisX: {
+      offset: 0,
+      showLabel: false
+    },
+    height: 180
+  }]]);
+}
+</script>
 </body>
 </html>
