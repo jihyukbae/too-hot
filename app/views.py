@@ -1,6 +1,7 @@
 from app import app
 from flask import jsonify, abort, request, make_response, send_from_directory, render_template
 import sqlite3, time, datetime, json
+from flask_socketio import SocketIO
 
 
 @app.route('/')
@@ -41,6 +42,7 @@ def process_temps():
         cursor.execute("INSERT INTO temps (sensorID, timestamp, temp) VALUES (?, ?, ?)",(request.json['sensorID'], currTime, request.json['temp']))
         conn.commit()
         conn.close()
+        socketio.emit('newtemp', {'temp': 54})
         return jsonify({'reading': new_reading}), 201
     elif request.method == 'GET':
         conn = sqlite3.connect('database.db')
