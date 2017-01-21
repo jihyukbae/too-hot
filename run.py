@@ -5,8 +5,14 @@ from app import app
 from flask import jsonify, abort, request, make_response, send_from_directory, render_template
 import sqlite3, time, datetime, json
 from flask_socketio import SocketIO
+import time
+from dateutil.parser import parse
+from datetime import datetime as dt
+
 
 app.config['SECRET_KEY'] = 'secret!'
+
+SICK_THRESHOLD = 20
 
 @app.route('/')
 @app.route('/index')
@@ -18,8 +24,27 @@ def index():
 def admin_dashboard():
     temp_readings = get_all_readings_json_fmt()
     json_data = json.loads(temp_readings)['temps']
-    print(json_data)
-    return render_template('admin.html', readings=json_data)
+
+    num_readings_total = len(json_data)
+    num_sick_total = 0
+    num_readings_today = 0
+    num_sick_today = 0
+
+    # var nextWeek = Date.parse(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7));
+
+
+
+    for reading in json_data:
+        timestamp = reading['timestamp']
+        datetime_obj = parse(timestamp, fuzzy=True)
+
+        if reading['temp'] > SICK_THRESHOLD and datetime_obj.date() == dt.today().date():
+            num_sick_today += 1
+            num_readings_today += 1
+        if reading['temp'] > SICK_THRESHOLD:
+            num_sick_total += 1
+    return render_template('admin.html', readings=json_data, num_readings_today=num_readings_today, num_sick_today=num_sick_today,
+                           num_readings_total=num_readings_total,num_sick_total=num_sick_total)
 
 @app.route('/static/admin')
 def admin_index():
@@ -41,11 +66,18 @@ def process_temps():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         rawTime = time.time()
-        currTime = datetime.datetime.fromtimestamp(rawTime).strftime('%Y-%m-%d %H:%M:%S')
+        currTime = dt.fromtimestamp(rawTime).strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("INSERT INTO temps (sensorID, timestamp, temp) VALUES (?, ?, ?)",(request.json['sensorID'], currTime, request.json['temp']))
         conn.commit()
         conn.close()
-        socketio.emit('newtemp', {'temp': request.json['temp']})
+        reading_temp = request.json['temp']
+        sick_status = None
+        if reading_temp > SICK_THRESHOLD:
+            sick_status = "true"
+        else:
+            sick_status = "false"
+
+        socketio.emit('newtemp', {'temp': request.json['temp'],'sick':sick_status})
         return jsonify({'reading': new_reading}), 201
     elif request.method == 'GET':
         conn = sqlite3.connect('database.db')
