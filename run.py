@@ -77,12 +77,12 @@ def process_temps():
         else:
             sick_status = "false"
 
-        socketio.emit('newtemp', {'temp': request.json['temp'],'sick':sick_status})
+        socketio.emit('newtemp', {'temp': request.json['temp'],'sick':sick_status,'timestamp':currTime,'sensorID':request.json['sensorID']})
         return jsonify({'reading': new_reading}), 201
     elif request.method == 'GET':
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("select * from temps")
+
         rows = cursor.fetchall()
         data = {"temps": []}
         for row in rows:
@@ -98,7 +98,7 @@ def process_temps():
 def get_all_readings_json_fmt():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("select * from temps")
+    cursor.execute("select * from temps order by readingID DESC")
     rows = cursor.fetchall()
     data = {"temps": []}
     for row in rows:

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <title>Too Hot</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +24,12 @@
     socket.on('newtemp', function (msg) {
         console.log(msg);
         console.log(msg['sick']);
-
+        var newRow = "<tr>";
+        newRow += "<td>"+msg['timestamp']+"</td>";
+        newRow += "<td>"+msg['sensorID']+"</td>";
+        newRow += "<td>"+msg['temp']+"</td>";
+        newRow += "</tr>"
+        $("#readLog tbody").prepend(newRow);
         if(msg['sick']){
             document.getElementById("numsicktoday").innerHTML = parseInt(document.getElementById("numsicktoday").innerHTML)+1;
             document.getElementById("numsicktotal").innerHTML = parseInt(document.getElementById("numsicktotal").innerHTML)+1;
@@ -166,7 +172,7 @@
         <div class="card-title">Log</div>
       </div>
       <div class="card-body no-padding table-responsive">
-        <table class="table card-table">
+        <table class="table card-table" id="readLog">
           <thead>
             <tr>
               <th>Timestamp</th>
