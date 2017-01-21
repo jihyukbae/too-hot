@@ -57,7 +57,6 @@ def process_temps():
             print row
             data["temps"].append({'readingID': row[0], 'sensorID': row[1], 'timestamp': row[2], 'temp': row[3]})
 
-
         return jsonify(data), 200
 
 
