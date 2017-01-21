@@ -1,12 +1,12 @@
 from app import app
-from flask import jsonify, abort, request, make_response, send_from_directory
+from flask import jsonify, abort, request, make_response, send_from_directory, render_template
 import sqlite3, time, datetime
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return "To be implemented"
+    return render_template('index.html')
 
 
 @app.route('/static/admin')

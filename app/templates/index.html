@@ -1,126 +1,200 @@
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Too Hot</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Scrolling Nav - Start Bootstrap Template</title>
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/flat-admin.css">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ url_for('static', filename='css/scrolling-nav.css') }}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- Theme -->
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/blue-sky.css">
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/blue.css">
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/red.css">
+  <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/yellow.css">
 
 </head>
+<body>
+  <div class="app app-default">
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+<aside class="app-sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a class="sidebar-brand" href="#"><span class="highlight">Too</span>Hot</a>
+    <button type="button" class="sidebar-toggle">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="sidebar-menu">
+    <ul class="sidebar-nav">
+      <li class="active">
+        <a href="./index.html">
+          <div class="icon">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+          </div>
+          <div class="title">Sensor 1</div>
+        </a>
+      </li>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    </ul>
+  </div>
+  <div class="sidebar-footer">
+    <ul class="menu">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+    </ul>
+  </div>
+</aside>
+
+<script type="text/ng-template" id="sidebar-dropdown.tpl.html">
+  <div class="dropdown-background">
+    <div class="bg"></div>
+  </div>
+  <div class="dropdown-container">
+    {{list}}
+  </div>
+</script>
+<div class="app-container">
+
+  <nav class="navbar navbar-default" id="navbar">
+  <div class="container-fluid">
+    <div class="navbar-collapse collapse in">
+      <ul class="nav navbar-nav navbar-mobile">
+        <li>
+          <button type="button" class="sidebar-toggle">
+            <i class="fa fa-bars"></i>
+          </button>
+        </li>
+        <li class="logo">
+          <a class="navbar-brand" href="#"><span class="highlight">Too</span>Hot</a>
+        </li>
+        <li>
+          <button type="button" class="navbar-toggle">
+            <img class="profile-img" src="./static/assets/images/profile.png">
+          </button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="navbar-title">Admin Page</li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+  <div class="btn-floating" id="help-actions">
+  <div class="btn-bg"></div>
+
+
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="card card-banner card-chart card-green no-br">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="title">Hourly Report</div>
         </div>
-        <!-- /.container -->
-    </nav>
 
-    <!-- Intro Section -->
-    <section id="intro" class="intro-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Scrolling Nav</h1>
-                    <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
-                    <a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+      <div class="card-body">
+        <div class="ct-chart-sale"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a class="card card-banner card-green-light">
+  <div class="card-body">
+    <!--<i class="icon fa fa-shopping-basket fa-4x"></i>-->
+    <div class="content">
+      <div class="title">Sick People Today</div>
+      <div class="value"><span class="sign"></span>35</div>
+    </div>
+  </div>
+</a>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>About Section</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a class="card card-banner card-blue-light">
+  <div class="card-body">
+    <!--<i class="icon fa fa-thumbs-o-up fa-4x"></i>-->
+    <div class="content">
+      <div class="title">Ride Per Sick Person Today</div>
+      <div class="value"><span class="sign"></span>0.4</div>
+    </div>
+  </div>
+</a>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Services Section</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a class="card card-banner card-yellow-light">
+  <div class="card-body">
+    <!--<i class="icon fa fa-user-plus fa-4x"></i>-->
+    <div class="content">
+      <div class="title">Sick People This Week</div>
+      <div class="value"><span class="sign"></span>246</div>
+    </div>
+  </div>
+</a>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Contact Section</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- jQuery -->
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-
-    <!-- Scrolling Nav JavaScript -->
-    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scrolling-nav.js') }}"></script>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+    <div class="card card-mini">
+      <div class="card-header">
+        <div class="card-title">Log</div>
+      </div>
+      <div class="card-body no-padding table-responsive">
+        <table class="table card-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Sensor ID</th>
+              <th>Temperature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Blah</td>
+              <td>12</td>
+              <td>93.4</td>
+            </tr>
+            <tr>
+              <td>Blah</td>
+              <td>5</td>
+              <td>93.4</td>
+            </tr>
+            <tr>
+              <td>Blah</td>
+              <td>1</td>
+              <td>93.4</td>
+            </tr>
+            <tr>
+              <td>Blah</td>
+              <td>10</td>
+              <td>93.4</td>
+            </tr>
+            <tr>
+              <td>Blah</td>
+              <td>6</td>
+              <td>93.4</td>
+            </tr>
+            <tr>
+              <td>Blah</td>
+              <td>40</td>
+              <td>93.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="./static/assets/js/vendor.js"></script>
+  <script type="text/javascript" src="./static/assets/js/app.js"></script>
 
 </body>
-
 </html>
