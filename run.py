@@ -46,7 +46,7 @@ def process_temps():
         cursor.execute("INSERT INTO temps (sensorID, timestamp, temp) VALUES (?, ?, ?)",(request.json['sensorID'], currTime, request.json['temp']))
         conn.commit()
         conn.close()
-        socketio.emit('newtemp', {'temp': 54})
+        socketio.emit('newtemp', {'temp': request.json['temp']})
         return jsonify({'reading': new_reading}), 201
     elif request.method == 'GET':
         conn = sqlite3.connect('database.db')
