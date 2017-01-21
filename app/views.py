@@ -11,7 +11,7 @@ def index():
 
 @app.route('/admin')
 def admin_dashboard():
-    return render_template('index.html')
+    return render_template('admin.html')
 
 @app.route('/static/admin')
 def admin_index():
