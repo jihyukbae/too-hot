@@ -6,7 +6,12 @@ import sqlite3, time, datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    return send_from_directory('static', "index.html")
+    return "To be implemented"
+
+
+@app.route('/static/admin')
+def admin_index():
+    return send_from_directory('static', "admin.html")
 
 @app.route('/static/<path:path>')
 def send_js(path):
