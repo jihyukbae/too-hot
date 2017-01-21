@@ -127,6 +127,13 @@ def create_db():
 
     return jsonify({'status': 'success'})
 
+@app.route('/api/makeemployeedb', methods=['GET'])
+def create_employee_db():
+    conn = sqlite3.connect('database_emp.db')
+    conn.execute('CREATE TABLE emps (name TEXT, latitude REAL, longitude REAL)')
+    conn.close()
+    print "Employee Table created successfully"
+
 
 socketio = SocketIO(app)
 socketio.run(app)
