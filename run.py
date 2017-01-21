@@ -63,7 +63,6 @@ def process_temps():
     else:
         return jsonify({'status': 'error'}), 400
 
-
 def get_all_readings_json_fmt():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
