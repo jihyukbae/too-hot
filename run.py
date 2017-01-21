@@ -38,7 +38,6 @@ def process_temps():
             'temp': request.json['temp'],
             'sensorID': request.json['sensorID']
         }
-
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         rawTime = time.time()
