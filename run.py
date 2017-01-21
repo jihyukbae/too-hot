@@ -134,6 +134,22 @@ def create_employee_db():
     conn.close()
     print "Employee Table created successfully"
 
+    return jsonify({'status': 'success'})
+
+@app.route('/api/emps', methods=['POST'])
+def insert_employee():
+    new_reading = {
+        'name': request.json['name'],
+        'latitude': request.json['latitude'],
+        'longitude': request.json['longitude']
+    }
+    conn = sqlite3.connect('database_emp.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO emps (name, latitude, longitude) VALUES (?, ?, ?)",(request.json['name'], request.json['latitude'], request.json['longitude']))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'reading': new_reading}), 201
 
 socketio = SocketIO(app)
 socketio.run(app)
