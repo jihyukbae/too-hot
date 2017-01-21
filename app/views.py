@@ -1,6 +1,17 @@
 from app import app
-from flask import jsonify, abort, request, make_response
+from flask import jsonify, abort, request, make_response, send_from_directory
 import sqlite3, time, datetime
+
+
+@app.route('/')
+@app.route('/index')
+def index():
+    # return "hello"
+    return send_from_directory('static', "index.html")
+
+@app.route('/static/<path:path>')
+def send_js(path):
+    return send_from_directory('static', path)
 
 @app.route('/api/temps', methods=['POST', 'GET'])
 def process_temps():
@@ -40,16 +51,13 @@ def process_temps():
 @app.route('/api/makenewdb', methods=['GET'])
 def create_db():
     conn = sqlite3.connect('database.db')
-    print "Opened database successfully";
+    print "Opened database successfully"
 
     conn.execute('CREATE TABLE temps (readingID INTEGER PRIMARY KEY AUTOINCREMENT, sensorID INTEGER, timestamp TEXT, temp REAL)')
-    print "Table created successfully";
+    print "Table created successfully"
     conn.close()
 
     return jsonify({'status': 'success'})
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return "Hello, World!"
+
