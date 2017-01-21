@@ -1,9 +1,10 @@
 from app import app
+from flask import jsonify, abort, request, make_response
 
 @app.route('/api/submitreading', methods=['POST'])
 def create_task():
     if not request.json or not 'temp' in request.json:
-        abort(400)
+        return make_response(jsonify({'error': 'No temperature specified'}), 400)
     new_reading = {
         'temp': request.json['temp']
     }
