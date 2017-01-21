@@ -14,7 +14,7 @@ def admin_dashboard():
     temp_readings = get_all_readings_json_fmt()
     json_data = json.loads(temp_readings)['temps']
     print(json_data)
-    return render_template('index.html', readings=json_data)
+    return render_template('admin.html', readings=json_data)
 
 @app.route('/static/admin')
 def admin_index():
