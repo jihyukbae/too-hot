@@ -5,6 +5,7 @@
 
 
 `GET /api/temps`
+
 Description: Retrieve all temperature records currently stored in the database.
 Sample response:
 ```
@@ -33,6 +34,7 @@ Sample response:
 ```
 
 `POST /api/temps`
+
 Description: Add a new temperature record into the database
 Input parameters:
  - temp - temperature recorded by sensor
