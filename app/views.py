@@ -9,6 +9,10 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/admin')
+def admin_dashboard():
+    return render_template('index.html')
+
 @app.route('/static/admin')
 def admin_index():
     return send_from_directory('static', "admin.html")
