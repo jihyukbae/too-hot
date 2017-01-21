@@ -10145,7 +10145,7 @@ $(".tab-stats a[data-toggle='tab']").on("shown.bs.tab", function (e) {
     tab.__chartist__.update();
   });
 });
-
+/*
 if ($('.ct-chart-sale').length) {
   new Chartist.Line('.ct-chart-sale', {
     labels: ["10:20", "10:30", "10:40", "10:50", "11:00", "11:10", "11:20", "11:30", "11:40", "11:50", "12:00", "12:10", "12:20", "12:30", "12:40", "12:50", "13:00", "13:10", "13:20", "13:30"],
@@ -10187,7 +10187,7 @@ if ($('.ct-chart-sale').length) {
     height: 180
   }]]);
 }
-
+*/
 },{}],"/Users/tui2tone/Documents/workspace/tui2tone/templates/flat-admin-bootstrap-templates/src/components/login/login.js":[function(require,module,exports){
 "use strict";
 
