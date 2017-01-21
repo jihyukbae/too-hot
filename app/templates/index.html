@@ -31,19 +31,35 @@
     socket.on('newtemp', function (msg) {
         console.log(msg);
         if(msg.temp > 100) {
-           document.body.style.backgroundColor = "red";
-           document.getElementById("defaulttext").style = "display:none";
-           document.getElementById("sickText").style = "display:unset";
-           document.getElementById("healthyText").style = "display:none";
+            showSickText();
+            setTimeout(showDefaultText, 5000);
         } else {
-           document.body.style.backgroundColor = "green";
-           document.getElementById("defaulttext").style = "display:none";
-           document.getElementById("sickText").style = "display:none";
-           document.getElementById("healthyText").style = "display:unset";
-
-
+            showHealthyText();
+            setTimeout(showDefaultText, 5000);
         }
     });
+
+    function showDefaultText() {
+      document.body.style.backgroundColor = "white";
+      document.getElementById("defaulttext").style = "display:unset";
+      document.getElementById("sickText").style = "display:none";
+      document.getElementById("healthyText").style = "display:none";
+    }
+
+    function showSickText() {
+      document.body.style.backgroundColor = "red";
+      document.getElementById("defaulttext").style = "display:none";
+      document.getElementById("sickText").style = "display:unset";
+      document.getElementById("healthyText").style = "display:none";
+    }
+
+    function showHealthyText() {
+      document.body.style.backgroundColor = "green";
+      document.getElementById("defaulttext").style = "display:none";
+      document.getElementById("sickText").style = "display:none";
+      document.getElementById("healthyText").style = "display:unset";
+    }
+
 </script>
 
 </body>
