@@ -6,7 +6,6 @@ import sqlite3, time, datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    # return "hello"
     return send_from_directory('static', "index.html")
 
 @app.route('/static/<path:path>')
@@ -58,6 +57,3 @@ def create_db():
     conn.close()
 
     return jsonify({'status': 'success'})
-
-
-
