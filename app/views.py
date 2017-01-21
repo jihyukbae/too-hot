@@ -6,10 +6,8 @@ import sqlite3, time, datetime, json
 @app.route('/')
 @app.route('/index')
 def index():
-    temp_readings = get_all_readings_json_fmt()
 
-    return render_template('index.html',  readings=temp_readings)
-
+    return render_template('index.html')
 
 @app.route('/admin')
 def admin_dashboard():
@@ -60,7 +58,6 @@ def process_temps():
 
     else:
         return jsonify({'status': 'error'}), 400
-
 
 
 def get_all_readings_json_fmt():
