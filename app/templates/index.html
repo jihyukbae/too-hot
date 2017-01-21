@@ -16,9 +16,7 @@
 
 </head>
 <body>
-  <h1 id="defaulttext" class="centeredText">Walk through the sensor...</h1>
-  <h1 id="sickText" class="centeredText" style="display:none">You have a fever!</h1>
-  <h1 id="healthyText" class="centeredText" style="display:none">You're good to go!</h1>
+
 
 
 
@@ -40,27 +38,31 @@
     });
 
     function showDefaultText() {
-      document.body.style.backgroundColor = "white";
+      document.getElementById("maindisplay").style = "background-color: white";
       document.getElementById("defaulttext").style = "display:unset";
       document.getElementById("sickText").style = "display:none";
       document.getElementById("healthyText").style = "display:none";
     }
 
     function showSickText() {
-      document.body.style.backgroundColor = "red";
+      document.getElementById("maindisplay").style = "background-color: red";
       document.getElementById("defaulttext").style = "display:none";
       document.getElementById("sickText").style = "display:unset";
       document.getElementById("healthyText").style = "display:none";
     }
 
     function showHealthyText() {
-      document.body.style.backgroundColor = "green";
+      document.getElementById("maindisplay").style = "background-color: green";
       document.getElementById("defaulttext").style = "display:none";
       document.getElementById("sickText").style = "display:none";
       document.getElementById("healthyText").style = "display:unset";
     }
 
 </script>
-
+<div class="jumbotron" id="maindisplay">
+    <h1 id="defaulttext" class="centeredText">Please proceed slowly. Temperature check in progress.</h1>
+  <h1 id="sickText" class="centeredText" style="display:none">You have a fever!</h1>
+  <h1 id="healthyText" class="centeredText" style="display:none">You're good to go!</h1>
+</div>
 </body>
 </html>
