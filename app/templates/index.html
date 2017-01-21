@@ -157,36 +157,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Blah</td>
-              <td>12</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Blah</td>
-              <td>5</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Blah</td>
-              <td>1</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Blah</td>
-              <td>10</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Blah</td>
-              <td>6</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Blah</td>
-              <td>40</td>
-              <td>93.4</td>
-            </tr>
+          {% for reading in readings %}
+          <tr>
+              <td>{{ reading.timestamp }}</td>
+              <td>{{ reading.sensorID }}</td>
+              <td>{{ reading.temp }}</td>
+          </tr>
+          {% endfor %}
+
           </tbody>
         </table>
       </div>

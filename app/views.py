@@ -1,17 +1,22 @@
 from app import app
 from flask import jsonify, abort, request, make_response, send_from_directory, render_template
-import sqlite3, time, datetime
+import sqlite3, time, datetime, json
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    temp_readings = get_all_readings_json_fmt()
+
+    return render_template('index.html',  readings=temp_readings)
 
 
 @app.route('/admin')
 def admin_dashboard():
-    return render_template('index.html')
+    temp_readings = get_all_readings_json_fmt()
+    json_data = json.loads(temp_readings)['temps']
+    print(json_data)
+    return render_template('index.html', readings=json_data)
 
 @app.route('/static/admin')
 def admin_index():
@@ -55,6 +60,20 @@ def process_temps():
 
     else:
         return jsonify({'status': 'error'}), 400
+
+
+
+def get_all_readings_json_fmt():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute("select * from temps")
+    rows = cursor.fetchall()
+    data = {"temps": []}
+    for row in rows:
+        print row
+        data["temps"].append({'readingID': row[0], 'sensorID': row[1], 'timestamp': row[2], 'temp': row[3]})
+
+    return json.dumps(data)
 
 @app.route('/api/makenewdb', methods=['GET'])
 def create_db():
