@@ -35,7 +35,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
   <script type="text/javascript" charset="utf-8">
-      $(document).ready(showSickText());
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
           console.log("Connected to server socket!");
@@ -44,7 +43,7 @@
           console.log(msg);
           if(msg['sick'] === "true") {
               showSickText();
-              //setTimeout(showDefaultText, 5000);
+              setTimeout(showDefaultText, 10000);
           } else {
               showHealthyText();
               setTimeout(showDefaultText, 5000);
