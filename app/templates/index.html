@@ -107,7 +107,6 @@ background-color:white !important
                 if(dataArray[0][i].name == empName) {
                     var newJSON = '{ "user_location": { "latitude": 39.9522, "longitude": -75.1932 }, "subject_location": { "latitude": 37.7749, "longitude": -122.4194} }';
                     $("#uber-button").attr("data-bttnio-context", newJSON);
-                    bttnio('refresh');
                     console.log($("#uber-button"));
                 }
             }
