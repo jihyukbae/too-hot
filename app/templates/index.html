@@ -43,7 +43,7 @@
       });
       socket.on('newtemp', function (msg) {
           console.log(msg);
-          if(msg.temp > 10) {
+          if(msg['sick'] === "true") {
               showSickText();
               //setTimeout(showDefaultText, 5000);
           } else {
