@@ -2959,7 +2959,7 @@ aside.app-sidebar {
       border-bottom-color: #ff6600; }
 
 .app-login {
-  background: #29c75f;
+  background: #ff6600;
   padding: 0 !important; }
   .app-login .app-body {
     position: relative;
@@ -4331,7 +4331,7 @@ input ::-webkit-input-placeholder {
     content: '\f00c';
     color: #FFF;
     background-color: #ff6600;
-    border: 1px solid #29c75f;
+    border: 1px solid #ff6600;
     border-bottom: 2px solid #18aa4a; }
   .checkbox.checkbox-inline, .checkbox.radio-inline, .radio.checkbox-inline, .radio.radio-inline {
     padding-left: 0; }
@@ -4575,7 +4575,7 @@ table.table.card-table {
       border: 0;
       background-color: transparent;
       border-radius: 1px;
-      border-bottom: 4px solid #29c75f;
+      border-bottom: 4px solid #ff6600;
       color: #ff6600; }
 
 @media (max-width: 767px) {
@@ -4730,7 +4730,7 @@ table.table.card-table {
 .pricing-table {
   border-left: 1px solid #e7edee; }
   .pricing-table > .pricing-heading {
-    border-bottom: 2px solid #29c75f;
+    border-bottom: 2px solid #ff6600;
     padding: 20px;
     text-align: center; }
     .pricing-table > .pricing-heading > .title {
@@ -5043,18 +5043,18 @@ div.section {
       padding-left: 0px; } }
 
 .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point {
-  stroke: #29c75f; }
+  stroke: #ff6600; }
 
 .ct-series-a .ct-area {
-  fill: #29c75f; }
+  fill: #ff6600; }
 
 .ct-series-a .ct-slice-pie {
-  fill: #29c75f;
+  fill: #ff6600;
   stroke: #FFF;
   stroke-width: 3; }
 
 .ct-series-a .ct-slice-donut {
-  stroke: #29c75f; }
+  stroke: #ff6600; }
 
 .ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point {
   stroke: #39c3da; }
@@ -5573,7 +5573,7 @@ ul.tags {
       font-size: 12px; }
       ul.tags > li > a:hover {
         color: #FFF;
-        border: 1px solid #29c75f;
+        border: 1px solid #ff6600;
         background-color: #ff6600;
         cursor: pointer; }
   ul.tags::after {
@@ -5635,7 +5635,7 @@ footer.app-footer {
     height: 100%;
     border-radius: 50%;
     background-color: #ff6600;
-    box-shadow: 0 1px 3px #29c75f;
+    box-shadow: 0 1px 3px #ff6600;
     z-index: 101108;
     transition: all 0.3s ease; }
   .btn-floating .btn-toggle {
