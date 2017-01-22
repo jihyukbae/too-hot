@@ -13,19 +13,36 @@
   <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/blue.css">
   <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/red.css">
   <link rel="stylesheet" type="text/css" href="./static/assets/css/theme/yellow.css">
-
+    <style type="text/css">
+        .jumbotron{
+    height: 100vh;
+    }
+        input[type="text"]{
+background-color:white !important
+}
+    </style>
 </head>
-<body>
+<body onload="showDefaultText()">
 
   <div class="jumbotron" id="maindisplay">
-      <h1 id="defaulttext" class="centeredText">Please proceed slowly. Temperature check in progress.</h1>
-    <h1 id="sickText" class="centeredText" style="display:none">You have a fever!</h1>
-    <h2 id="sickText2" style="display:none">Enter your full name to request an Uber ride home.</h1>
-    <h1 id="healthyText" class="centeredText" style="display:none">You're good to go!</h1>
+      <div class="container">
+          <br><br>
+          <center><h1 id="defaulttext" class="centeredText">Please proceed slowly. Temperature check in progress.</h1></center>
+          <center><h1 id="sickText" class="centeredText" style="display:none">Possibility of fever (!)</h1></center>
+          <center><h2 id="sickText2" style="display:none">If you feel symptoms, remember to wash your hands frequently, drink plenty of water, and get plenty of rest. If you wish, you may enter your name and use the button below to request an Uber home.</h2></center>
+          <center><h1 id="healthyText" class="centeredText" style="display:none">Good to go!</h1></center>
 
+          <div id="spinner">
+                <br><br><br>
+              <center><img src="./static/assets/images/spinner.gif" /></center>
+          </div>
 
-    <input id="nameInput" type="text" name="Full Name">
-    <button onclick="confirmName()">Confirm Name</button>
+            <div id="namebox">
+          <br><br>
+          <center><input class="form-control" placeholder="Full Name" id="nameInput" type="text" name="Full Name"><button type="button" class="btn btn-primary" onclick="confirmName()">Confirm Name</button></center>
+
+            </div>
+    </div>
   </div>
 
 
@@ -56,22 +73,28 @@
         document.getElementById("sickText").style = "display:none";
         document.getElementById("sickText2").style = "display:none";
         document.getElementById("healthyText").style = "display:none";
+        document.getElementById("namebox").style = "display:none";
+        document.getElementById("spinner").style = "display:unset";
       }
 
       function showSickText() {
-        document.getElementById("maindisplay").style = "background-color: red";
+        document.getElementById("maindisplay").style = "background-color: orange";
         document.getElementById("defaulttext").style = "display:none";
-        document.getElementById("sickText").style = "display:unset";
+        document.getElementById("sickText").style = "display:unset; color: white";
         document.getElementById("sickText2").style = "display:unset";
         document.getElementById("healthyText").style = "display:none";
+        document.getElementById("namebox").style = "display:unset";
+        document.getElementById("spinner").style = "display:none";
       }
 
       function showHealthyText() {
-        document.getElementById("maindisplay").style = "background-color: green";
+        document.getElementById("maindisplay").style = "background-color: #29C75F";
         document.getElementById("defaulttext").style = "display:none";
         document.getElementById("sickText").style = "display:none";
         document.getElementById("sickText2").style = "display:none";
-        document.getElementById("healthyText").style = "display:unset";
+        document.getElementById("healthyText").style = "display:unset; color:white";
+        document.getElementById("namebox").style = "display:none";
+        document.getElementById("spinner").style = "display:none";
       }
 
       function confirmName() {

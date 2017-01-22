@@ -2944,8 +2944,8 @@ aside.app-sidebar {
   aside.app-sidebar .sidebar-menu ul.sidebar-nav > li > a .title {
     color: #8d9293; }
   aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.active > a .icon {
-    background-color: rgba(41, 199, 95, 0.25);
-    color: rgba(41, 199, 95, 0.75); }
+    /*background-color: rgba(41, 199, 95, 0.25);*/
+    color: rgba(255, 102, 0, 0.75); }
   aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.active > a .title {
     color: #ff6600; }
   aside.app-sidebar .sidebar-menu ul.sidebar-nav > li.dropdown > .dropdown-menu > ul > li.section {
@@ -3127,7 +3127,7 @@ aside.app-sidebar {
     .app-login.__loading .loader-container .sk-folding-cube .sk-cube:before {
       background-color: #FFF; }
   .app-login.__loading:after {
-    background-color: rgba(41, 199, 95, 0.75); }
+    background-color: rgba(255, 102, 0, 0.75); }
 
 ul.icons {
   list-style: none;
