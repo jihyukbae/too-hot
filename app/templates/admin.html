@@ -31,7 +31,7 @@
         newRow += "</tr>"
         $("#readLog tbody").prepend(newRow);
         $('#readLog tr:last').remove();
-        if(msg['sick']){
+        if(msg['sick'] === "true"){
             document.getElementById("numsicktoday").innerHTML = parseInt(document.getElementById("numsicktoday").innerHTML)+1;
             document.getElementById("numsicktotal").innerHTML = parseInt(document.getElementById("numsicktotal").innerHTML)+1;
         }
