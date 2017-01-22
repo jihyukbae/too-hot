@@ -13,6 +13,7 @@ from datetime import date, timedelta
 
 app.config['SECRET_KEY'] = 'secret!'
 
+
 SICK_THRESHOLD = 36
 
 @app.route('/')
