@@ -84,7 +84,7 @@
             for(var i = 0; i < dataArray[0].length; i++) {
                 console.log(dataArray[0][i].name);
                 if(dataArray[0][i].name == empName) {
-                    $("#uber-button").attr("data-bttnio-context", { "user_location": { "latitude": 40.7382869, "longitude": -73.9823721 }, "subject_location": { "latitude": ' + dataArray[0][i].latitude + ', "longitude": ' + dataArray[0][i].longitude + '} });
+                    $("#uber-button").attr("data-bttnio-context", JSON.stringify({ "user_location": { "latitude": 40.7382869, "longitude": -73.9823721 }, "subject_location": { "latitude": ' + dataArray[0][i].latitude + ', "longitude": ' + dataArray[0][i].longitude + '} });
                     bttnio('refresh');
                     console.log($("#uber-button"));
                 }
