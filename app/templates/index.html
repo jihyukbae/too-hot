@@ -40,7 +40,7 @@ background-color:white !important
             <div id="namebox">
           <br><br>
           <center><input class="form-control" placeholder="Full Name" id="nameInput" type="text" name="Full Name"><button type="button" class="btn btn-primary" onclick="confirmName()">Confirm Name</button></center>
-
+          <center><button type="button" class="btn btn-primary" onclick="showDefaultText()">Thank you, but I'm feeling fine.</button></center>
             </div>
     </div>
   </div>
@@ -60,7 +60,7 @@ background-color:white !important
           console.log(msg);
           if(msg['sick'] === "true") {
               showSickText();
-              setTimeout(showDefaultText, 15000);
+              //setTimeout(showDefaultText, 15000);
           } else {
               showHealthyText();
               setTimeout(showDefaultText, 5000);
