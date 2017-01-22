@@ -20,15 +20,23 @@
   <div class="jumbotron" id="maindisplay">
       <h1 id="defaulttext" class="centeredText">Please proceed slowly. Temperature check in progress.</h1>
     <h1 id="sickText" class="centeredText" style="display:none">You have a fever!</h1>
-    <h1 id="sickText2" style="display:none">Enter your full name to request an Uber ride home.</h1>
+    <h2 id="sickText2" style="display:none">Enter your full name to request an Uber ride home.</h1>
     <h1 id="healthyText" class="centeredText" style="display:none">You're good to go!</h1>
+
+
+    <input id="nameInput" type="text" name="Full Name">
+    <button onclick="confirmName()">Confirm Name</button>
   </div>
+
+
 
   <div id="uber-button" data-bttnio-id="btn-473571aefeb8b56c"
      data-bttnio-context='{ "user_location": { "latitude": 40.6827, "longitude": -73.9754 }, "subject_location": { "latitude": 40.7382869, "longitude": -73.9823721 } }'></div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
   <script type="text/javascript" charset="utf-8">
+      showSickText();
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
           console.log("Connected to server socket!");
@@ -68,6 +76,18 @@
         document.getElementById("healthyText").style = "display:unset";
       }
 
+      function confirmName() {
+        var empName = document.getElementById("nameInput").value;
+        $.get("/api/emps", function(data) {
+            var dataArray = Object.keys(data).map(function(k) { return data[k] });
+            for(var i = 0; i < dataArray.length; i++) {
+                if(dataArray[0][i].name == empName) {
+                    $("#uber-button").attr("data-bttnio-context", '{ "user_location": { "latitude": 40.7382869, "longitude": -73.9823721 }, "subject_location": { "latitude": ' + dataArray[0][i].latitude + ', "longitude": ' + dataArray[0][i].longitude + '} }');
+                }
+            }
+        });
+      }
+
       window.ButtonWebConfig = {
         applicationId: 'app-1156c0a4c7fa23fb'
       };
@@ -75,5 +95,6 @@
         u['__bttnio']=b;u[b]=u[b]||function(){(u[b].q=u[b].q||[]).push(arguments)};t=s.createElement(e);n=s.getElementsByTagName(e)[0];t.async=1;t.src='https://web.btncdn.com/v1/button.js';n.parentNode.insertBefore(t,n)
       })(window, document, 'script', 'bttnio');
     </script>
+
 </body>
 </html>

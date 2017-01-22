@@ -97,7 +97,7 @@ def process_temps():
         for row in rows:
             print row
             data["temps"].append({'readingID': row[0], 'sensorID': row[1], 'timestamp': row[2], 'temp': row[3]})
-
+        conn.close()
         return jsonify(data), 200
 
 
@@ -136,20 +136,34 @@ def create_employee_db():
 
     return jsonify({'status': 'success'})
 
-@app.route('/api/emps', methods=['POST'])
-def insert_employee():
-    new_reading = {
-        'name': request.json['name'],
-        'latitude': request.json['latitude'],
-        'longitude': request.json['longitude']
-    }
-    conn = sqlite3.connect('database_emp.db')
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO emps (name, latitude, longitude) VALUES (?, ?, ?)",(request.json['name'], request.json['latitude'], request.json['longitude']))
-    conn.commit()
-    conn.close()
+@app.route('/api/emps', methods=['POST', 'GET'])
+def process_employee():
+    if request.method == 'POST':
+        new_reading = {
+            'name': request.json['name'],
+            'latitude': request.json['latitude'],
+            'longitude': request.json['longitude']
+        }
+        conn = sqlite3.connect('database_emp.db')
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO emps (name, latitude, longitude) VALUES (?, ?, ?)",(request.json['name'], request.json['latitude'], request.json['longitude']))
+        conn.commit()
+        conn.close()
 
-    return jsonify({'reading': new_reading}), 201
+        return jsonify({'reading': new_reading}), 201
+    elif request.method == 'GET':
+        conn = sqlite3.connect('database_emp.db')
+        cursor = conn.cursor()
+        cursor.execute("select * from emps")
+        rows = cursor.fetchall()
+        data = {"emps": []}
+        for row in rows:
+            print row
+            data["emps"].append({'name': row[0], 'latitude': row[1], 'longitude': row[2]})
+
+        return jsonify(data), 200
+    else:
+        return jsonify({'status': 'error'}), 400
 
 socketio = SocketIO(app)
 socketio.run(app)
